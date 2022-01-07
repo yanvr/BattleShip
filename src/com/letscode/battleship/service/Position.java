@@ -94,24 +94,4 @@ public class Position {
         gameBoard[line][column] = 'N';
         return true;
     }
-
-    public static void shootTheBoat(char[][] gameBoard, int line, int column) {
-        if (line == 0 || column == 0) {
-            Writer.invalidPosition();
-            return;
-        }
-
-        if (gameBoard[line][column] == ' ') {
-            gameBoard[line][column] = '-';
-            Writer.shootInTheWater();
-            return;
-        }
-
-        if (gameBoard[line][column] == 'N') {
-            gameBoard[line][column] = '*';
-            Writer.targetWasShotDown();
-            return;
-        }
-    }
-
 }

@@ -1,5 +1,7 @@
 package com.letscode.battleship.utils;
 
+import com.letscode.battleship.entity.Player;
+
 public class Writer {
 
     public static void insertLine() {
@@ -42,4 +44,23 @@ public class Writer {
     public static void cpuTurn() {
         System.out.println("*** Rodada do CPU ***");
     }
+
+    public static void scoreBoaard(Player player1, Player player2) {
+        System.out.println("********** Placar **********");
+        System.out.print("*** " + player1.name + " " + player1.score + " X ");
+        System.out.print(player2.score + " " + player2.name + " ***\n");
+        System.out.println("****************************\n");
+    }
+
+    public static void winner(Player player) {
+        System.out.println("########## CHAMPION ##########");
+        System.out.println("########## " + player.name + " ##########");
+        System.out.println("##############################");
+    }
+
+    public static void endGame() {
+        System.out.println("*** O jogo acabou ***");
+    }
+
 }
+
