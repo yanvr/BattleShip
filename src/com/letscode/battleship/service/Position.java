@@ -82,12 +82,12 @@ public class Position {
 
     public static boolean wasPlaced(char[][] gameBoard, int line, int column) {
         if (line == 0 || column == 0) {
-            Writer.invalidPosition();
+            Writer.positionStatus(Writer.INVALID);
             return false;
         }
 
         if (gameBoard[line][column] == 'N') {
-            Writer.occoupiedPosition();
+            Writer.positionStatus(Writer.OCCUPIED);
             return false;
         }
 

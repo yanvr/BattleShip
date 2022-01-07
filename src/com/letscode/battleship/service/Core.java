@@ -57,7 +57,7 @@ public class Core {
                 int column;
 
                 // HUMAN
-                Writer.playerTurn();
+                Writer.whoseTurnItIs(Writer.PLAYER_TURN);
 
                 line = Position.changeLine(Reader.readLine());
                 column = Position.changeColumn(Reader.readColumn());
@@ -68,7 +68,7 @@ public class Core {
                     isRunning = false;
                 } else {
                     // CPU
-                    Writer.cpuTurn();
+                    Writer.whoseTurnItIs(Writer.CPU_TURN);
 
                     line = Position.changeColumn(RandomNumber.generate());
                     column = Position.changeColumn(RandomNumber.generate());
@@ -79,7 +79,7 @@ public class Core {
                         isRunning = false;
                     }
                 }
-                Writer.scoreBoaard(human, cpu);
+                Writer.scoreBoard(human, cpu);
             } while (isRunning);
             if (human.score > cpu.score) {
                 Writer.winner(human);
