@@ -7,9 +7,9 @@ public class Reader {
 
     public static Scanner gameScanner = new Scanner(System.in);
 
-    public static int readColumn() {
+    public static String readColumn() {
         Writer.insertPosition(Writer.INSERT_COLUMN);
-        return gameScanner.nextInt();
+        return gameScanner.next();
     }
 
     public static String readLine() {

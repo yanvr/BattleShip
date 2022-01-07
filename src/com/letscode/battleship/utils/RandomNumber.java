@@ -6,8 +6,8 @@ public class RandomNumber {
 
     public static Random random;
 
-    public static int generate() {
+    public static String generate() {
         random = new Random();
-        return random.nextInt(9);
+        return String.valueOf(random.nextInt(9));
     }
 }
