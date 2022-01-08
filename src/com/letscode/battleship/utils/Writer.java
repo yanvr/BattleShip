@@ -6,9 +6,10 @@ public class Writer {
 
     public static final String INSERT_LINE = "Informe uma linha (letra de A à J):";
     public static final String INSERT_COLUMN = "Informe uma coluna (número  de 0 à 9:";
-    public static final String INVALID = "A posição informada é inválida, informe novamente";
-    public static final String OCCUPIED = "A posição informada está ocupada, informe outra posição";
-    public static final String SHOT_IN_THE_WATER = "O tiro atingiu a água";
+    public static final String INVALID = "A posição informada é inválida, informe novamente.";
+    public static final String OCCUPIED = "A posição informada está ocupada, informe outra posição.";
+    public static final String ALREADY_INFORMED = "A posição digitada já foi informada.";
+    public static final String SHOT_IN_THE_WATER = "O tiro atingiu a água.";
     public static final String TARGET_WAS_SHOT_DOWN = "O tiro atingiu a água";
     public static final String PLAYER_TURN = "*** Rodada do jogador ***";
     public static final String CPU_TURN = "*** Rodada do CPU ***";

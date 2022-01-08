@@ -1,6 +1,7 @@
 package com.letscode.battleship;
 
 import com.letscode.battleship.entity.GameBoard;
+import com.letscode.battleship.entity.Player;
 import com.letscode.battleship.service.Core;
 
 public class BattleShipApplication {
