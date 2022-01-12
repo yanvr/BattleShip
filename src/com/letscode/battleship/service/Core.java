@@ -13,14 +13,14 @@ public class Core {
 
         while (isRunning) {
 
+            int line;
+            int column;
+
             int quantityHumanSubmarines = gameSize;
 
             do {
                 Writer.showGameBoard(human.getGameBoard(), Writer.HUMAN);
                 Writer.showsTheAmountOfBoatsLeft(quantityHumanSubmarines);
-
-                int line;
-                int column;
 
                 line = Changer.changeLine(Reader.readPosition(Writer.INSERT_LINE));
                 column = Changer.changeColumn(Reader.readPosition(Writer.INSERT_COLUMN));
@@ -35,9 +35,6 @@ public class Core {
 
             do {
 
-                int line;
-                int column;
-
                 line = Changer.changeColumn(Generator.randomNumber());
                 column = Changer.changeColumn(Generator.randomNumber());
 
@@ -47,9 +44,6 @@ public class Core {
 
             do {
                 Writer.showGameBoard(human.getGameBoard(), Writer.HUMAN);
-
-                int line;
-                int column;
 
                 // HUMAN
                 Writer.whoseTurnItIs(Writer.PLAYER_TURN);
