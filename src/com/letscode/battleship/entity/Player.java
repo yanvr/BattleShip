@@ -1,33 +1,38 @@
 package com.letscode.battleship.entity;
 
+import com.letscode.battleship.enums.PlayerType;
+import com.letscode.battleship.service.GameBoard;
 import com.letscode.battleship.utils.Writer;
 
 public class Player {
 
-    public String name;
-    public int score = 0;
-    public char[][] gameBoard;
+    private PlayerType type;
+    private int score = 0;
+    private char[][] gameBoard;
 
-    public Player(String name,char[][] gameBoard){
-        this.name = name;
-        this.gameBoard = gameBoard;
+    public Player(PlayerType type){
+        this.type = type;
+        GameBoard gameBoard = new GameBoard();
+        this.gameBoard = gameBoard.board;
     }
 
-    public void shootTheBoat(char[][] enemyBoard, int line, int column) {
-        if (line == 0 || column == 0) {
-            Writer.positionStatus(Writer.INVALID);
+    public String getType() {
+        return type.getType();
+    }
 
-        } else if (enemyBoard[line][column] == ' ') {
-            enemyBoard[line][column] = '-';
-            Writer.positionStatus(Writer.SHOT_IN_THE_WATER);
+    public int getScore() {
+        return score;
+    }
 
-        } else if (enemyBoard[line][column] == 'N') {
-            enemyBoard[line][column] = '*';
-            Writer.positionStatus(Writer.TARGET_WAS_SHOT_DOWN);
-            score++;
+    public void setScore(int score) {
+        this.score = score;
+    }
 
-        } else {
-            Writer.positionStatus(Writer.ALREADY_INFORMED);
-        }
+    public char[][] getGameBoard() {
+        return gameBoard;
+    }
+
+    public void setGameBoard(int line, int column, char symbol) {
+        gameBoard[line][column] = symbol;
     }
 }

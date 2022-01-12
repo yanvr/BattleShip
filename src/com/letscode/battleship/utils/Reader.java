@@ -7,13 +7,8 @@ public class Reader {
 
     public static Scanner gameScanner = new Scanner(System.in);
 
-    public static String readColumn() {
-        Writer.insertPosition(Writer.INSERT_COLUMN);
-        return gameScanner.next();
-    }
-
-    public static String readLine() {
-        Writer.insertPosition(Writer.INSERT_LINE);
+    public static String readPosition(String position) {
+        Writer.insertPosition(position);
         return gameScanner.next().toUpperCase(Locale.ROOT);
     }
 }

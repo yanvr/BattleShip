@@ -1,34 +1,32 @@
 package com.letscode.battleship.service;
 
 import com.letscode.battleship.entity.Player;
-import com.letscode.battleship.utils.RandomNumber;
+import com.letscode.battleship.utils.Generator;
 import com.letscode.battleship.utils.Reader;
 import com.letscode.battleship.utils.Writer;
 
 public class Core {
 
-    public static void runGame(char[][] humanGameBoard, char[][] cpuGameBoard) {
-        // Define a quantidade de submarinos
+    public static void runGame(Player human, Player cpu) {
         final int gameSize = 10;
         boolean isRunning = true;
-
-        Player human = new Player("human", humanGameBoard);
-        Player cpu = new Player("cpu", cpuGameBoard);
 
         while (isRunning) {
 
             int quantityHumanSubmarines = gameSize;
 
             do {
+                Writer.showGameBoard(human.getGameBoard(), Writer.HUMAN);
+                Writer.showsTheAmountOfBoatsLeft(quantityHumanSubmarines);
+
                 int line;
                 int column;
 
-                line = Position.changeLine(Reader.readLine());
-                column = Position.changeColumn(Reader.readColumn());
+                line = Changer.changeLine(Reader.readPosition(Writer.INSERT_LINE));
+                column = Changer.changeColumn(Reader.readPosition(Writer.INSERT_COLUMN));
 
-                if (Position.wasPlaced(humanGameBoard, line, column)) quantityHumanSubmarines--;
+                if (Positioner.wasPlaced(human.getGameBoard(), line, column)) quantityHumanSubmarines--;
 
-                Writer.showGameBoard(humanGameBoard);
 
             } while (quantityHumanSubmarines > 0);
 
@@ -40,18 +38,15 @@ public class Core {
                 int line;
                 int column;
 
-                line = Position.changeColumn(RandomNumber.generate());
-                column = Position.changeColumn(RandomNumber.generate());
+                line = Changer.changeColumn(Generator.randomNumber());
+                column = Changer.changeColumn(Generator.randomNumber());
 
-                if (Position.wasPlaced(cpuGameBoard, line, column)) quantityCpuSubmarines--;
+                if (Positioner.wasPlaced(cpu.getGameBoard(), line, column)) quantityCpuSubmarines--;
 
             } while (quantityCpuSubmarines > 0);
 
-
             do {
-                Writer.showGameBoard(human.gameBoard);
-                // Imprimir aqui para auxiliar no teste
-                // Writer.showGameBoard(cpuGameBoard);
+                Writer.showGameBoard(human.getGameBoard(), Writer.HUMAN);
 
                 int line;
                 int column;
@@ -59,35 +54,37 @@ public class Core {
                 // HUMAN
                 Writer.whoseTurnItIs(Writer.PLAYER_TURN);
 
-                line = Position.changeLine(Reader.readLine());
-                column = Position.changeColumn(Reader.readColumn());
+                line = Changer.changeLine(Reader.readPosition(Writer.INSERT_LINE));
+                column = Changer.changeColumn(Reader.readPosition(Writer.INSERT_COLUMN));
 
-                human.shootTheBoat(cpu.gameBoard, line, column);
-                if (human.score == gameSize){
+                Positioner.PositionShot(cpu.getGameBoard(), human, line, column);
+
+                if (human.getScore() == gameSize){
                     Writer.endGame();
                     isRunning = false;
                 } else {
                     // CPU
                     Writer.whoseTurnItIs(Writer.CPU_TURN);
 
-                    line = Position.changeColumn(RandomNumber.generate());
-                    column = Position.changeColumn(RandomNumber.generate());
+                    line = Changer.changeColumn(Generator.randomNumber());
+                    column = Changer.changeColumn(Generator.randomNumber());
 
-                    cpu.shootTheBoat(human.gameBoard, line, column);
-                    if (cpu.score == gameSize){
+                    Positioner.PositionShot(human.getGameBoard(), cpu, line, column);
+
+                    if (cpu.getScore() == gameSize){
                         Writer.endGame();
                         isRunning = false;
                     }
                 }
                 Writer.scoreBoard(human, cpu);
             } while (isRunning);
-            if (human.score > cpu.score) {
+            if (human.getScore() > cpu.getScore()) {
                 Writer.winner(human);
             } else {
                 Writer.winner(cpu);
             }
-            Writer.showGameBoard(human.gameBoard);
-            Writer.showGameBoard(cpu.gameBoard);
+            Writer.showGameBoard(human.getGameBoard(), Writer.HUMAN);
+            Writer.showGameBoard(cpu.getGameBoard(), Writer.CPU);
         }
     }
 }

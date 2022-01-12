@@ -1,4 +1,4 @@
-package com.letscode.battleship.entity;
+package com.letscode.battleship.service;
 
 public class GameBoard {
 

@@ -1,11 +1,9 @@
 package com.letscode.battleship.service;
 
-import com.letscode.battleship.utils.Writer;
-
 import java.util.HashMap;
 import java.util.Map;
 
-public class Position {
+public class Changer {
 
     public static int changeLine(String line) {
         int boardLine = 0;
@@ -55,18 +53,4 @@ public class Position {
         return boardColumn;
     }
 
-    public static boolean wasPlaced(char[][] gameBoard, int line, int column) {
-        if (line == 0 || column == 0) {
-            Writer.positionStatus(Writer.INVALID);
-            return false;
-        }
-
-        if (gameBoard[line][column] == 'N') {
-            Writer.positionStatus(Writer.OCCUPIED);
-            return false;
-        }
-
-        gameBoard[line][column] = 'N';
-        return true;
-    }
 }
